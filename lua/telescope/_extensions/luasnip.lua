@@ -14,7 +14,11 @@ local conf          = require("telescope.config").values
 local ext_conf      = require("telescope._extensions")
 -- stylua: ignore end
 
-M = {}
+local M = {
+  preview = {
+    check_mime_type = true,
+  },
+}
 
 local filter_null = function(str, default)
   return str and str or (default and default or '')
@@ -65,11 +69,6 @@ local default_search_text = function(entry)
     .. filter_description(entry.context.name, entry.context.description)
 end
 
-M.opts = {
-  preview = {
-    check_mime_type = true,
-  },
-}
 M.luasnip_fn = function(opts)
   opts = vim.tbl_extend('keep', opts or {}, M.opts)
 
